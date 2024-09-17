@@ -16,14 +16,14 @@ export default function Movie({image, title, description}) {
     }
 
     return (
-        <div className="movie-img" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <img  src={image} alt="Movie image"/>
+        <div className="movie-poster" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <img  src={image} alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
             
             {/* Conditionally rendering the description section */}
             {isShown && (
                 <div  className="movie-description" >
                     <h3>{title}</h3>
-                    <p>{description}</p>
+                    <p>{description.length  > 150 ? `${description.slice(0, 150)}...` : description}</p>
                 </div>
              )}
 

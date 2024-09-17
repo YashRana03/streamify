@@ -6,6 +6,9 @@ function App() {
 
   const [movieData, setMovieData] = useState(null) // stores movie data
   
+  console.log(movieData)
+
+
   // Authorization options
   const options = {
     method: 'GET',
@@ -32,8 +35,8 @@ function App() {
     return ( 
     <Movie 
       key={i} 
-      image={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-      title={movie.original_title}
+      image={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
+      title={movie.title}
       description={movie.overview}
       />
     )
@@ -48,8 +51,8 @@ function App() {
         <div className="movies-container">
           {movieEl}
         </div>
-       
         </div>
+
     </>
   )
 }
