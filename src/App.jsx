@@ -5,10 +5,8 @@ import Movie from './components/Movie';
 function App() {
 
   const [movieData, setMovieData] = useState(null) // stores movie data
+  const [movieGenre, setMovieGenre] = useState(null) // stores the movie genre
   
-  console.log(movieData)
-
-
   // Authorization options
   const options = {
     method: 'GET',
@@ -28,6 +26,25 @@ function App() {
       .catch(err => console.error(err));
     }
 
+    // obtains the movie genre data
+    if (!movieGenre) {
+      fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+      .then(response => response.json())
+      .then(data =>  {
+
+        // Remodelling the Genre data into look up dictionary for better performance
+        const genre = data.genres
+        let dict = {}
+        for (let i=0; i<genre.length; i++) {
+        dict[genre[i].id] = genre[i].name
+      
+        }
+        setMovieGenre(dict)
+      })
+      .catch(err => console.error(err));
+    }
+
+
   }, [])
 
   // Looping over data and creating Movie elements
@@ -35,14 +52,14 @@ function App() {
     return ( 
     <Movie 
       key={i} 
-      image={`http://image.tmdb.org/t/p/original${movie.poster_path}`}
-      title={movie.title}
-      description={movie.overview}
+      movie={movie}
+      genres={movieGenre}
       />
     )
   })
 
 
+  
   if (!movieData) return  <h1>Loading</h1>
 
   return (
