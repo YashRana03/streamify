@@ -1,0 +1,51 @@
+.container {
+    width: 90%;
+    height: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+
+.movie-img {
+    position: relative;
+    width: 220px;
+}
+
+.movie-img > img  {
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.movie-description {
+    position: absolute;
+    top: 160px;
+    width: 220px;
+    height: 150px;
+    background-color: black;
+    border-radius: 8px;
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    transition: all 1s;
+
+}
+
+.movies-container {
+    width: 100%;
+    height: min-content;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    row-gap: 40px;
+    justify-content: center;
+    column-gap: 10px;
+    align-items: flex-start;
+}
