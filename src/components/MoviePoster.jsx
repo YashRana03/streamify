@@ -38,9 +38,11 @@ export default function MoviePoster({media, genre}) {
         <div className="movie-poster" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <img  src={`http://image.tmdb.org/t/p/original${media.poster_path}`} alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
             
+            
             {/* Conditionally rendering the description section */}
             {isShown && (
                 <div  className="movie-info" >
+                    <div className="media-type">{mediaType == "tv" ? "Show" : "Movie"}</div>
                     <h3 className="poster-title">{media?.title || media.name}</h3>
                     <div className="poster-rating--year">
                         <div className="year">{media?.release_date ?  media.release_date.slice(0, 4) : `Since ${media.first_air_date.slice(0, 4)}`}</div>

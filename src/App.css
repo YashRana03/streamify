@@ -46,6 +46,18 @@ body {
     border-radius: 8px 8px 0px 0px;
 }
 
+.media-type {
+    position: absolute;
+    font-size: 11px;
+    color: black;
+    font-weight: 300;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 1px 2px;
+    right: 5px;
+    top: 5px;
+}
+
 
 .movie-info {
     position: absolute;
@@ -68,6 +80,7 @@ body {
 .poster-title {
     font-size: 19px;
     font-weight: 800;
+    margin-top: 25px;
 }
 
 .poster-rating--year {
@@ -75,7 +88,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin: 15px 0;
+    margin: 10px 0;
     font-weight: 700;
     font-size: 13.5px;
 }
