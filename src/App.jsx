@@ -2,15 +2,17 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import MoviePoster from './components/MoviePoster';
+import Navbar from './components/Navbar';
 
 function App() {
 
   const [mediaData, setMediaData] = useState(null) // stores movie data
   const [genreData, setGenreData] = useState() // stores the movie genre
+
+  console.log(mediaData)
   
   // Obtains the necessary data from the Movie API 
   useEffect(() => {
-
 
     if (!mediaData) {
       fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a')
@@ -54,8 +56,6 @@ function App() {
 
     }
     
-
-
     // if (!movieData) {
     //   fetch('https://api.themoviedb.org/3/discover/movie?include_adult=&include_video=true&language=en-US&page=1&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     //   .then(response => response.json())
@@ -83,11 +83,14 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <Navbar />
+      <div className='container'>
         <div className="movies-container">
+        <h2 className='section-name'>Trending</h2>
           {movieEl}
         </div>
-        </div>
+      </div>
+
 
     </>
   )
