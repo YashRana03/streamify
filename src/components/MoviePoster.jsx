@@ -5,7 +5,9 @@ export default function MoviePoster({media, genre}) {
 
     const [isShown, setIshown] = useState(false) // Keeps track of whether the movie description is being displayed
     
-    const mediaType = media.media_type
+
+    const mediaType = media?.media_type ? media.media_type 
+    : media?.release_date ? "movie" : "tv"
 
 
     // triggered when user hovers on the movie icon
@@ -35,7 +37,7 @@ export default function MoviePoster({media, genre}) {
     if (mediaType == "tv" || mediaType == "movie")  {
         return (
             <div className="movie-poster" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <img  src={`http://image.tmdb.org/t/p/original${media.poster_path}`} alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
+                <img  src={`http://image.tmdb.org/t/p/original${media.poster_path}`} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
                 
                 
                 {/* Conditionally rendering the description section */}

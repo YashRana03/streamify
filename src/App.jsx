@@ -6,22 +6,26 @@ import Navbar from './components/Navbar';
 
 function App() {
 
-  const [mediaData, setMediaData] = useState(null) // stores movie data
-  const [genreData, setGenreData] = useState() // stores the movie genre
+  const [trendingMediaData, setTrendingMediaData] = useState(null) // stores trending movie/shows data
+  const [movieData, setMovieData] = useState(null) // stores movie data
+  const [showData, setShowData] = useState()
 
-  console.log(mediaData)
+  const [genreData, setGenreData] = useState() // stores both movie and tv show genres
+
+  console.log(movieData)
   
   // Obtains the necessary data from the Movie API 
   useEffect(() => {
 
-    if (!mediaData) {
+    // Fetching the trending media data
+    if (!trendingMediaData) {
       fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a')
       .then(response => response.json())
-      .then(data => setMediaData(data.results))
+      .then(data => setTrendingMediaData(data.results.slice(0, 16)))
       .catch(err => console.error(err));
     }
 
-    // obtains the movie genre data
+    // Fetching the genre for both movies and shows
     if (!genreData) {
       fetch('https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=7af7f0da356b6bf29e4f80a35298d70a')
       .then(response => response.json())
@@ -56,17 +60,26 @@ function App() {
 
     }
     
-    // if (!movieData) {
-    //   fetch('https://api.themoviedb.org/3/discover/movie?include_adult=&include_video=true&language=en-US&page=1&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
-    //   .then(response => response.json())
-    //   .then(data => setMovieData(data.results))
-    //   .catch(err => console.error(err));
-    // }
+    // Fetching the movie data
+    if (!movieData) {
+      fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=3&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
+      .then(response => response.json())
+      .then(data => setMovieData(data.results.slice(0, 16)))
+      .catch(err => console.error(err));
+    }
+
+    // // Fetching the show data
+    if (!showData) {
+      fetch('https://api.themoviedb.org/3/tv/top_rated?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
+      .then(response => response.json())
+      .then(data => setShowData(data.results.slice(0, 16)))
+      .catch(err => console.error(err));
+    }
 
   }, [])
 
   // Looping over data and creating Movie elements
-  const movieEl = mediaData?.map((media, i) => {
+  const trendingEl = trendingMediaData?.map((media, i) => {
     return ( 
     <MoviePoster 
       key={i} 
@@ -76,18 +89,51 @@ function App() {
     )
   })
 
+  const movieEl = movieData?.map((media, i) => {
+    return ( 
+    <MoviePoster 
+      key={i} 
+      media={media}
+      genre={genreData}
+      />
+    )
+  })
+
+  const showEl = showData?.map((media, i) => {
+    return ( 
+    <MoviePoster 
+      key={i} 
+      media={media}
+      genre={genreData}
+      />
+    )
+  })
+
+  console.log(showData)
+
 
 
   // Making all the data necessary is received before returning the JSX for displaying the movie posters
-  if (!mediaData || !genreData?.genresMovie || !genreData?.genresShows ) return  <h1>Loading</h1>
+  if (!trendingMediaData || !genreData?.genresMovie || !genreData?.genresShows || !movieData || !showData ) return  <h1>Loading</h1>
 
   return (
     <>
       <Navbar />
       <div className='container'>
+
         <div className="movies-container">
-        <h2 className='section-name'>Trending</h2>
+          <h2 className='section-name'>Trending</h2>
+          {trendingEl}
+        </div>
+
+        <div className="movies-container">
+          <h2 className='section-name'>Movies</h2>
           {movieEl}
+        </div>
+        
+        <div className="movies-container">
+          <h2 className='section-name'>Shows</h2>
+          {showEl}
         </div>
       </div>
 
