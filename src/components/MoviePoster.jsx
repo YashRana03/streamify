@@ -29,7 +29,7 @@ export default function MoviePoster({media, genre}) {
             //     console.log(genre.genresShows[something])
             // }
             
-            return <div className="poster-genre" key={i}>{mediaType == "movie" ? genre.genresMovie[something].slice(0, 100) : genre.genresShows[something]}</div>
+            return <div className="poster-genre" key={i}>{mediaType == "movie" ? genre.genresMovie[something] : genre.genresShows[something]}</div>
         }
     })
     
@@ -46,7 +46,7 @@ export default function MoviePoster({media, genre}) {
                         <div className="media-type">{mediaType == "tv" ? "Show" : "Movie"}</div>
                         <h3 className="poster-title">{media?.title || media.name}</h3>
                         <div className="poster-rating--year">
-                            <div className="year">{media?.release_date ?  media.release_date.slice(0, 4) : `Since ${media.first_air_date.slice(0, 4)}`}</div>
+                            <div className="year">{media?.release_date ?  media.release_date.slice(0, 4) : ` ${media.first_air_date.slice(0, 4)}`}</div>
                             <div className="rating">{`${media?.vote_average}`.slice(0, 3) + " IMDb"}</div>
                         </div>
     
