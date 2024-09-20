@@ -9,7 +9,6 @@ export default function Home() {
     const [trendingMediaData, setTrendingMediaData] = useState(null) // stores trending movie/shows data
     const [movieData, setMovieData] = useState(null) // stores movie data
     const [showData, setShowData] = useState() // stores show data
-  
     const [genreData, setGenreData] = useState() // stores both movie and tv show genres
   
     
@@ -23,8 +22,6 @@ export default function Home() {
                 setGenreData(genres)
                 setMovieData(movie)
                 setShowData(show)
-                // Making the genres data available to the MovieDetails route by storing in session storage
-                sessionStorage.setItem("genres", JSON.stringify(genres)) 
             }
             catch (err) {
                 console.log("Following error occured while fetching data: ",  err)

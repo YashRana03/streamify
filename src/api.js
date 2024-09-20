@@ -54,7 +54,7 @@ export async function getGenreData() {
 }
 
 export async function getMovieData() {
-    const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
+    const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=5&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
             message: "Failed to fetch Movie data",
