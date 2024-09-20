@@ -2,6 +2,7 @@ import './App.css'
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from './components/Layout';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
+            <Route path="movie/:id" element={<MovieDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>

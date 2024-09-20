@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import MoviePoster from "../components/MoviePoster"
 import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api"
+import { Link } from "react-router-dom"
+
+
 
 export default function Home() {
     const [trendingMediaData, setTrendingMediaData] = useState(null) // stores trending movie/shows data
@@ -20,6 +23,8 @@ export default function Home() {
                 setGenreData(genres)
                 setMovieData(movie)
                 setShowData(show)
+                // Making the genres data available to the MovieDetails route by storing in session storage
+                sessionStorage.setItem("genres", JSON.stringify(genres)) 
             }
             catch (err) {
                 console.log("Following error occured while fetching data: ",  err)
@@ -33,40 +38,40 @@ export default function Home() {
     // Looping over data and creating trending movie and show poster elements
     const trendingEl = trendingMediaData?.map((media, i) => {
       return ( 
-        <MoviePoster 
-            key={i} 
-            media={media}
-            genre={genreData}
-            />
+            <Link key={i} to={`movie/${media.id}`}>
+                <MoviePoster 
+                media={media}
+                genre={genreData}
+                />
+            </Link>
         )
     })
   
     // Looping over data and creating movie poster elements
     const movieEl = movieData?.map((media, i) => {
         return ( 
-            <MoviePoster 
-            key={i} 
-            media={media}
-            genre={genreData}
-            />
+            <Link key={i} to={`movie/${media.id}`}>
+                <MoviePoster 
+                media={media}
+                genre={genreData}
+                />
+            </Link>
+
         )
     })
   
     // Looping over data and creating show poster elements
     const showEl = showData?.map((media, i) => {
       return ( 
-        <MoviePoster 
-            key={i} 
-            media={media}
-            genre={genreData}
-            />
+            <Link key={i} to={`movie/${media.id}`}>
+                <MoviePoster 
+                media={media}
+                genre={genreData}
+                />
+            </Link>
         )
     })
-  
-    console.log(genreData)
-  
-  
-  
+    
     // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
     if (!trendingMediaData || !genreData?.genresMovie || !genreData?.genresShows || !movieData || !showData ) return  <h1>Loading</h1>
   

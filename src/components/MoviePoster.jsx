@@ -25,10 +25,6 @@ export default function MoviePoster({media, genre}) {
     // generating the genre tags displayed on the movie poster description (a max of only 3 is displayed)
     const genreTags = media.genre_ids.map((something, i) => {
         if (i <= 2) {
-            // if (mediaType == "tv") {
-            //     console.log(genre.genresShows[something])
-            // }
-            
             return <div className="poster-genre" key={i}>{mediaType == "movie" ? genre.genresMovie[something] : genre.genresShows[something]}</div>
         }
     })
