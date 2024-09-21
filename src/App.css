@@ -201,8 +201,6 @@ MOVIE PAGE
         linear-gradient(to right, transparent 2%, black, transparent 98%),
         linear-gradient(to bottom, transparent 1%, black, transparent 98%);
     mask-composite: intersect;
-
-
 }
 
 
@@ -276,12 +274,48 @@ MOVIE PAGE
 
 .movie-page--nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 50px;
-}
-
-.movie-page--nav > h3 {
-    margin: 10px;
+    width: 170px;
     font-weight: 500;
+    color: grey;
+
 }
 
+
+.active {
+    position: relative;
+    color: white;
+}
+
+.active::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: 10px;
+    background-color: white;
+    
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+DETAILS SUB-SECTION
+---------------------------------------------------------------------------------------------------------------------------- */
+
+.movie-page--info {
+    max-width: 600px;
+    font-size: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.movie-page--overview {
+    line-height: 30px;
+}
+.movie-page--grey {
+    color: #bbbbbb;
+    font-size: 18px;
+}

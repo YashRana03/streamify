@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getMovieDetails } from "../api" 
-import { useParams } from "react-router-dom"
+import { useParams, NavLink } from "react-router-dom"
 
 
 export default function MovieDetails() {
@@ -14,8 +14,8 @@ export default function MovieDetails() {
         async function getData() {
             try {
                 const data = await getMovieDetails(id)
+                sessionStorage.setItem("movieDetails", JSON.stringify(data))
                 setMovieDetails(data)
-                
             } 
             catch (err) {
                 console.log(err)
@@ -25,11 +25,6 @@ export default function MovieDetails() {
         getData()
     }, [])
 
-    
-    // fetch('https://api.themoviedb.org/3/movie/299536?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a')
-    // .then(response => response.json())
-    // .then(response => console.log(response))
-    // .catch(err => console.error(err));
 
     // fetch('https://api.themoviedb.org/3/movie/299536/reviews?language=en-US&page=1&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     // .then(response => response.json())
@@ -38,8 +33,6 @@ export default function MovieDetails() {
 
 
     const genres = movieDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
-    // console.log(movieDetails?.genres)
-
 
     if (!movieDetails) {
         return <div className="container"><h1>Loading</h1></div>
@@ -60,8 +53,16 @@ export default function MovieDetails() {
                     </div>
                 </div>
                 <div className="movie-page--nav">
-                    <h3>Details</h3>
-                    <h3>Related</h3>
+                    <NavLink to="details" 
+                        
+                        className={({isActive}) => isActive ? "active" : null}>
+                        <h3>Details</h3>
+                    </NavLink>
+                    <NavLink to="related" 
+                    
+                        className={({isActive}) => isActive ? "active" : null}>
+                        <h3>Related</h3>
+                    </NavLink>
                 </div>
             </div>
             
