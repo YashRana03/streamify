@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import Details from './components/Details';
 import Related from './components/Related';
 import DetailPageLayout from './components/DetailPageLayout';
+import Reviews from './components/Reviews';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
             <Route path="movie/:id"  element={<DetailPageLayout />} >
-              <Route path="details" element={<Details />}/>
+              <Route index element={<Details />}/>
+              <Route path="reviews" element={<Reviews />} />
               <Route path="related" element={<Related />}/>
             </Route>
           </Route>

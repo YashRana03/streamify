@@ -276,12 +276,11 @@ MOVIE PAGE
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
-    width: 170px;
+    width: 250px;
     font-weight: 500;
     color: grey;
 
 }
-
 
 .active {
     position: relative;
@@ -297,7 +296,6 @@ MOVIE PAGE
     background-color: white;
     
 }
-
 
 /* ----------------------------------------------------------------------------------------------------------------------------
 DETAILS SUB-SECTION
@@ -315,7 +313,36 @@ DETAILS SUB-SECTION
 .movie-page--overview {
     line-height: 30px;
 }
+
 .movie-page--grey {
     color: #bbbbbb;
     font-size: 18px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+REVIEWS SUB-SECTION
+---------------------------------------------------------------------------------------------------------------------------- */
+
+.movie-page--reviews {
+    max-width: 600px;
+    font-size: 20px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.movie-page--review {
+    color: white;
+
+
+}
+.movie-page--profile-img {
+
+    background-color: white;
+    border-radius: 50%;
+    width: 50px;
+    padding: 5px;
+
 }

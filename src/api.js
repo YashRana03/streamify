@@ -105,3 +105,16 @@ export async function getShowDetails(id) {
     const data = await response.json()
     return data
 }
+
+export async function getReviews(id) {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
+    if(!response.ok) {
+        throw {
+            message: "Failed to fetch Review Data",
+            status: response.status,
+            statusText: response.statusText
+        }
+    }
+    const data = await response.json()
+    return data.results
+}

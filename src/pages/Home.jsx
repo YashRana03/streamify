@@ -86,6 +86,8 @@ export default function Home() {
             </Link>
         )
     })
+
+    console.log(movieData)
     
     // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
     if (!trendingMediaData || !genreData || !movieData || !showData ) return  <h1>Loading</h1>

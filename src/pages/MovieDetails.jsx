@@ -1,35 +1,7 @@
-import { useEffect, useState } from "react"
-import { getMovieDetails } from "../api" 
-import { useParams, NavLink } from "react-router-dom"
+/* eslint-disable react/prop-types */
+import { NavLink } from "react-router-dom"
 
-
-export default function MovieDetails() {
-
-    const [movieDetails, setMovieDetails] = useState()
-    const id = useParams().id // getting the id of the movie chosen by the user
-
-    console.log(movieDetails)
-    
-    useEffect(() => {
-        async function getData() {
-            try {
-                const data = await getMovieDetails(id)
-                sessionStorage.setItem("movieDetails", JSON.stringify(data))
-                setMovieDetails(data)
-            } 
-            catch (err) {
-                console.log(err)
-            }    
-            
-        }
-        getData()
-    }, [])
-
-
-    // fetch('https://api.themoviedb.org/3/movie/299536/reviews?language=en-US&page=1&api_key=7af7f0da356b6bf29e4f80a35298d70a')
-    // .then(response => response.json())
-    // .then(response => console.log(response.results[1].content))
-    // .catch(err => console.error(err));
+export default function MovieDetails({movieDetails}) {
 
 
     const genres = movieDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
@@ -37,7 +9,7 @@ export default function MovieDetails() {
     if (!movieDetails) {
         return <div className="container"><h1>Loading</h1></div>
     }
-
+    
     return (
         <>
             <div className="movie-page--container">
@@ -53,8 +25,8 @@ export default function MovieDetails() {
                     </div>
                 </div>
                 <div className="movie-page--nav">
-                    <NavLink to="details" 
-                        
+                    <NavLink to="." 
+                        end  
                         className={({isActive}) => isActive ? "active" : null}>
                         <h3>Details</h3>
                     </NavLink>
@@ -63,6 +35,11 @@ export default function MovieDetails() {
                         className={({isActive}) => isActive ? "active" : null}>
                         <h3>Related</h3>
                     </NavLink>
+                    <NavLink to="reviews" 
+                    
+                    className={({isActive}) => isActive ? "active" : null}>
+                    <h3>Reviews</h3>
+                </NavLink>
                 </div>
             </div>
             
