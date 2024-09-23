@@ -324,20 +324,21 @@ REVIEWS SUB-SECTION
 ---------------------------------------------------------------------------------------------------------------------------- */
 
 .movie-page--reviews {
-    max-width: 600px;
+    max-width: 750px;
     font-size: 20px;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    width: 75%;
 
 }
 
 .movie-page--review {
     color: white;
-
-
+    position: relative;
 }
+
 .movie-page--profile-img {
 
     background-color: white;
@@ -345,4 +346,20 @@ REVIEWS SUB-SECTION
     width: 50px;
     padding: 5px;
 
+}
+
+.movie-page--author {
+    margin-bottom: 50px;
+}
+
+.movie-page--show-btn {
+    font-size: 14px;
+    color: #bbbbbb;
+    cursor: pointer;
+}
+
+.movie-page--createdAt  {
+    position: absolute;
+    top: 15px;
+    right: 10px;
 }
