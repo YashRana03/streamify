@@ -1,45 +1,50 @@
-import { useEffect, useState } from "react"
 import { useOutletContext } from "react-router-dom"
+import Review from "./Review"
+import { useState } from "react"
 
 export default function Reviews() {
     const {reviewsData: data} = useOutletContext()
-    const [length, setLength] = useState()
-    const [show, setShow] = useState()
+    const [shownReviews, setShowReviews] = useState(3)
 
-    function toggleShow() {
-        setShow(() => !show)
+    function showMoreReviews() {
+        setShowReviews(prevState => prevState + 3)
     }
-    
-    useEffect(() => {
-        console.log(data)
-        if (data) setLength(data.length ? data[0].content.length : 0)
-    }, [data])
-    
-    console.log(data)
     
     if (!data) return <div className="movie-page--container"><h1>Loading</h1></div>
 
+    if (data.length == 0) {
+        return (
+            <div className="movie-page--container">
+                <div className="movie-page--reviews">
+                    <h3>No reviews</h3>
+                </div>
+            </div>
+        )
+    }
+
+    const reviewEl = data.map((review, i) => {
+        return <Review data={review} key={i}/>
+        
+    })
     
     return (
         <>
             <div className="movie-page--container">
                 <div className="movie-page--reviews">
-                    {data.length == 0 ? <h3>No reviews</h3> :
-                        <div className="movie-page--review">
-                            <img  src="/images/account-pic.svg" alt="user-profile-picture" width="100px" className="movie-page--profile-img"/>
-                            <div className="movie-page--createdAt">{`On: ${data[0]?.created_at.slice(0, 10)}`}</div>
-                            <h5 className="movie-page--author">{data[0]?.author}</h5>
-                            <p>{show ? data[0]?.content : data[0]?.content.slice(0, 300)}</p>
-                            {length > 300 ? <p onClick={toggleShow} className="movie-page--show-btn">{show ? "Show Less" : "Show More"}</p> : null}
-                        </div>
-                    }
-                    
+                    {reviewEl.slice(0, shownReviews)}   
                 </div>
+                {shownReviews < data.length ? 
+                    (
+                    <div className="movie-page--more-reviews" onClick={showMoreReviews}>
+                        <p>More Reviews</p>
+                        <img src="/images/down-arrow.svg" width="30px"/>
+                    </div>
+                    )
+                    : null
+                }
+                
             </div>
         </>
     )
 }
 
-
-
-// {data: {movieDetails, reviewsData}}
