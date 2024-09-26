@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom"
 
 export default function MovieDetails({movieDetails}) {
 
-
     const genres = movieDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
 
     if (!movieDetails) {

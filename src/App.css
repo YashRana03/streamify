@@ -83,6 +83,7 @@ MOVIE POSTER
     position: relative;
     width: 170px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
 
 }
 
@@ -92,6 +93,12 @@ MOVIE POSTER
     object-fit: cover;
     transition: transform 0.5s ;
     border-radius: 8px 8px 0px 0px;
+}
+
+.hover-grey:hover {
+    opacity: 0.8;
+    scale: 1.1;
+    border-radius: 8px;
 }
 
 .media-type {
@@ -373,4 +380,32 @@ REVIEWS SUB-SECTION
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+RELATED SUB-SECTION
+---------------------------------------------------------------------------------------------------------------------------- */
+
+.movie-page--related {
+    width: 80%;
+    height: 400px;
+
+}
+
+.movie-page--carousel {
+
+    margin-top: 80px;
+
+}
+
+
+.react-multiple-carousel__arrow {
+    background-color: #333 !important; /* Change the background color */
+    opacity: 1 !important;
+    
+}
+
+.react-multiple-carousel__arrow--left {
+    left: 20px !important;
+    
 }

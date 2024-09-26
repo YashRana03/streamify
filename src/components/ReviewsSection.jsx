@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom"
 import Review from "./Review"
 import { useState } from "react"
 
-export default function Reviews() {
+export default function ReviewsSection() {
     const {reviewsData: data} = useOutletContext()
     const [shownReviews, setShowReviews] = useState(3)
 

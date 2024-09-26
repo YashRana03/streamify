@@ -1,23 +1,22 @@
 import { useState } from "react"
 
 /* eslint-disable react/prop-types */
-export default function MoviePoster({media, genre}) {
+export default function MoviePoster({media, genre, scales = true}) {
 
     const [isShown, setIshown] = useState(false) // Keeps track of whether the movie description is being displayed
     
-
     const mediaType = media?.media_type ? media.media_type 
     : media?.release_date ? "movie" : "tv"
 
 
     // triggered when user hovers on the movie icon
     function handleMouseEnter() {
-        setIshown(true)
+        if (scales) setIshown(true)
     }
 
     // triggered when the user moves on from movie icon
     function handleMouseLeave() {
-        setIshown(false)
+        if (scales) setIshown(false)
     }
 
     
@@ -32,7 +31,7 @@ export default function MoviePoster({media, genre}) {
 
     if (mediaType == "tv" || mediaType == "movie")  {
         return (
-            <div className="movie-poster" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className={`movie-poster ${!scales ? "hover-grey" : null}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
                 <img  src={`http://image.tmdb.org/t/p/original${media.poster_path}`} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
                 
                 
