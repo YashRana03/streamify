@@ -57,8 +57,10 @@ export default function RelatedSection() {
 
 
     console.log(genres)
+    console.log(movieDetails?.id)
 
     const moviePosters = relatedMovies?.map((movie, i) => {
+        if (movie?.id == movieDetails?.id) return null
         return (
             <Link key={i} to={`/movie/${movie.id}`}>
                 <MoviePoster 

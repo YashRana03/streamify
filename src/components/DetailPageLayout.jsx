@@ -25,7 +25,7 @@ export default function DetailPageLayout() {
             
         }
         getData()
-    }, [])
+    }, [id])
 
 
     return (

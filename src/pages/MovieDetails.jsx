@@ -19,7 +19,13 @@ export default function MovieDetails({movieDetails}) {
                         <div className="movie-page--genre">
                             {genres}
                         </div>
-                        <div className="movie-page--runtime">{`${Math.floor(movieDetails.runtime / 60)} hr ${movieDetails.runtime % 60} min`}</div>
+                        <div className="movie-page--runtime">
+                            {
+                                movieDetails.runtime != 0 ? 
+                                `${Math.floor(movieDetails.runtime / 60)} hr ${movieDetails.runtime % 60} min`:
+                                null
+                            }
+                        </div>
                         <button className="movie-page--play-button">Play now</button>
                     </div>
                 </div>

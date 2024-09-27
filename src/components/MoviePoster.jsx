@@ -28,7 +28,6 @@ export default function MoviePoster({media, genre, scales = true}) {
         }
     })
     
-
     if (mediaType == "tv" || mediaType == "movie")  {
         return (
             <div className={`movie-poster ${!scales ? "hover-grey" : null}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
@@ -42,7 +41,7 @@ export default function MoviePoster({media, genre, scales = true}) {
                         <h3 className="poster-title">{media?.title || media.name}</h3>
                         <div className="poster-rating--year">
                             <div className="year">{media?.release_date ?  media.release_date.slice(0, 4) : ` ${media.first_air_date.slice(0, 4)}`}</div>
-                            <div className="rating">{`${media?.vote_average}`.slice(0, 3) + " IMDb"}</div>
+                            <div className="rating">{media?.vote_average == 0 ? "N/A" : `${media?.vote_average}`.slice(0, 3) + " IMDb"}</div>
                         </div>
     
                         <p className="poster-description">{media.overview.length  > 85 ? `${media.overview.slice(0, 85)}...` : media.overview}</p>
