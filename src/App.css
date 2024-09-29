@@ -55,6 +55,42 @@ HOME PAGE
 
 }
 
+.search-box {
+    position: absolute;
+    top: -150px;
+    right: 50px;
+    /* background-color: red; */
+}
+
+.relative {
+    position: relative;
+    width: 250px;
+}
+
+.serach-icon {
+    width: 23px;
+    position: absolute;
+    transform: translateY(15%);
+    left: 7px;
+    top: 2px;
+}
+
+.search-box input {
+    height: 20px;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    text-indent: 30px;
+    width: 100%;
+    padding: 5px;
+    font-family: "Inter", sans-serif;
+    color: #bbbbbb
+
+
+}
+
 
 .movies-container {
 
