@@ -66,7 +66,7 @@ export default function Home() {
     // Looping over data and creating movie poster elements
     const movieEl = movieData?.map((media, i) => {
         return ( 
-            <Link key={i} to={`movie/${media.id}/`}>
+            <Link key={i} to={`movie/${media.id}/`} state={{data: "movie"}}>
                 <Poster 
                 media={media}
                 genre={genreData}
@@ -79,7 +79,7 @@ export default function Home() {
     // Looping over data and creating show poster elements
     const showEl = showData?.map((media, i) => {
       return ( 
-            <Link key={i} to={`movie/${media.id}`}>
+            <Link key={i} to={`movie/${media.id}`} state={{data: "tv"}}>
                 <Poster 
                 media={media}
                 genre={genreData}

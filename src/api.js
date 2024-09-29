@@ -54,7 +54,7 @@ export async function getGenreData() {
 }
 
 export async function getMovieData() {
-    const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=5&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
+    const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=5&sort_by=popularity.descc&with_origin_country=US%7CGB&primary_release_date.lte=2023-12-12&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
             message: "Failed to fetch Movie data",
@@ -67,7 +67,7 @@ export async function getMovieData() {
 }
 
 export async function getShowData() {
-    const response = await fetch('https://api.themoviedb.org/3/tv/top_rated?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=7af7f0da356b6bf29e4f80a35298d70a')
+    const response = await fetch('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_origin_country=US%7CGB&vote_average.gte=8&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
             message: "Failed to fetch Show data",
@@ -132,7 +132,7 @@ export async function getShowReviews(id) {
 }
 
 export async function getRelatedMovies(genres) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}&with_origin_country=US%7CGB&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
 
     if(!response.ok) {
         throw {
@@ -145,7 +145,7 @@ export async function getRelatedMovies(genres) {
     return data.results
 }
 export async function getRelatedShows(genres) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
+    const response = await fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genres}&with_origin_country=US%7CGB&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
 
     if(!response.ok) {
         throw {
