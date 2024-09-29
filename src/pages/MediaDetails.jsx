@@ -1,29 +1,35 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom"
 
-export default function MovieDetails({movieDetails}) {
+export default function MovieDetails({mediaDetails}) {
 
-    const genres = movieDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
 
-    if (!movieDetails) {
+    const mediaType = sessionStorage.getItem("mediaType")
+    const genres = mediaDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
+
+    if (!mediaDetails) {
         return <div className="container"><h1>Loading</h1></div>
     }
-    
+    console.log(mediaDetails)
+
     return (
         <>
             <div className="movie-page--container">
                 <div className="movie-page--main">
-                    <img src={`http://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`} className="movie-page--img"/>
+                    <img src={`http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`} className="movie-page--img"/>
                     <div className="movie-page--title">
-                        <h1>{movieDetails.title}</h1>
+                        <h1>{mediaType == "tv" ? mediaDetails.name : mediaDetails.title}</h1>
                         <div className="movie-page--genre">
                             {genres}
                         </div>
                         <div className="movie-page--runtime">
-                            {
-                                movieDetails.runtime != 0 ? 
-                                `${Math.floor(movieDetails.runtime / 60)} hr ${movieDetails.runtime % 60} min`:
+                            {   mediaType == "tv" ?
+                                `Season ${mediaDetails.number_of_seasons}`
+                                :
+                                mediaDetails.runtime != 0 ? 
+                                `${Math.floor(mediaDetails.runtime / 60)} hr ${mediaDetails.runtime % 60} min`:
                                 null
+                                
                             }
                         </div>
                         <button className="movie-page--play-button">Play now</button>

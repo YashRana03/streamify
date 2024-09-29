@@ -1,7 +1,7 @@
-import { getRelatedMovies } from "../api";
+import { getRelatedMovies, getRelatedShows } from "../api";
 import { useEffect, useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
-import MoviePoster from "./MoviePoster";
+import Poster from "./Poster";
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -9,9 +9,14 @@ import 'react-multi-carousel/lib/styles.css';
 
 export default function RelatedSection() {
 
-    const [relatedMovies, setRelatedMovies] = useState()
+    const [relatedMedia, setRelatedMedia] = useState()
     const genres = JSON.parse(sessionStorage.getItem("genres"))
-    const {movieDetails} = useOutletContext()
+    const { mediaDetails} = useOutletContext()
+
+    const mediaType = sessionStorage.getItem("mediaType")
+    console.log(mediaType)
+
+
 
     const responsive = {
         desktop: {
@@ -34,17 +39,23 @@ export default function RelatedSection() {
 
         async function getData() {
             
-            if (movieDetails) {
+            if (mediaDetails) {
                 let stringIds = ""
                 let x = 0
-                for (let i=0; i<movieDetails?.genres.length; i++) {
-                    if (x <=2) stringIds += `${movieDetails.genres[i].id},`
+                for (let i=0; i<mediaDetails?.genres.length; i++) {
+                    if (x <=2) stringIds += `${mediaDetails.genres[i].id},`
                 }
                 console.log(stringIds)
                 
                 try {
-                    const data = await getRelatedMovies(stringIds)
-                    setRelatedMovies(data)
+                    if (mediaType == "movie") {
+                        const data = await getRelatedMovies(stringIds)
+                        setRelatedMedia(data)
+                    }
+                    else {
+                        const data = await getRelatedShows(stringIds)
+                        setRelatedMedia(data)
+                    }
                 }
                 catch (err) {
                     console.log(err)
@@ -53,17 +64,16 @@ export default function RelatedSection() {
         }
         getData()
 
-    }, [movieDetails])
+    }, [mediaDetails])
 
 
-    console.log(genres)
-    console.log(movieDetails?.id)
+    console.log(relatedMedia)
 
-    const moviePosters = relatedMovies?.map((movie, i) => {
-        if (movie?.id == movieDetails?.id) return null
+    const moviePosters = relatedMedia?.map((movie, i) => {
+        if (movie?.id == mediaDetails?.id) return null
         return (
             <Link key={i} to={`/movie/${movie.id}`}>
-                <MoviePoster 
+                <Poster 
                 media={movie}
                 genre={genres}
                 scales={false}

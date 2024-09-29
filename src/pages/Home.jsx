@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import MoviePoster from "../components/MoviePoster"
+import Poster from "../components/Poster"
 import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api"
 import { Link } from "react-router-dom"
 
@@ -53,10 +53,11 @@ export default function Home() {
     // // Looping over data and creating trending movie and show poster elements
     const trendingEl = trendingMediaData?.map((media, i) => {
       return ( 
-            <Link key={i} to={`movie/${media.id}`}>
-                <MoviePoster 
+            <Link key={i} to={`movie/${media.id}`} state={{data: media?.media_type}}>
+                <Poster 
                 media={media}
                 genre={genreData}
+                
                 />
             </Link>
         )
@@ -66,7 +67,7 @@ export default function Home() {
     const movieEl = movieData?.map((media, i) => {
         return ( 
             <Link key={i} to={`movie/${media.id}/`}>
-                <MoviePoster 
+                <Poster 
                 media={media}
                 genre={genreData}
                 />
@@ -79,7 +80,7 @@ export default function Home() {
     const showEl = showData?.map((media, i) => {
       return ( 
             <Link key={i} to={`movie/${media.id}`}>
-                <MoviePoster 
+                <Poster 
                 media={media}
                 genre={genreData}
                 />
@@ -87,7 +88,7 @@ export default function Home() {
         )
     })
 
-    console.log(movieData)
+    console.log(trendingMediaData)
     
     // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
     if (!trendingMediaData || !genreData || !movieData || !showData ) return  <h1>Loading</h1>
