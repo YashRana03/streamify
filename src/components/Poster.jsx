@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 /* eslint-disable react/prop-types */
-export default function MoviePoster({media, genre, scales = true}) {
+export default function Poster({media, genre, scales = true}) {
 
     const [isShown, setIshown] = useState(false) // Keeps track of whether the movie description is being displayed
     
@@ -27,20 +27,27 @@ export default function MoviePoster({media, genre, scales = true}) {
             return <div className="poster-genre" key={i}>{mediaType == "movie" ? genre?.genresMovie[something] : genre?.genresShows[something]}</div>
         }
     })
+
+    console.log(media)
     
     if (mediaType == "tv" || mediaType == "movie")  {
         return (
             <div className={`movie-poster ${!scales ? "hover-grey" : null}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                <img  src={`http://image.tmdb.org/t/p/original${media.poster_path}`} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
-                
+                <img  src={media?.poster_path ? `http://image.tmdb.org/t/p/original${media.poster_path}` : "/images/white-img.avif"} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
+                {!media?.poster_path ? <p className="missing-poster-img">Image Unavailable</p> : null}
                 
                 {/* Conditionally rendering the description section */}
                 {isShown && (
                     <div  className="movie-info" >
                         <div className="media-type">{mediaType == "tv" ? "Show" : "Movie"}</div>
-                        <h3 className="poster-title">{media?.title || media.name}</h3>
+                        <h3 className="poster-title">{
+                            mediaType == "tv" ?
+                            media?.name.length > 40 ? `${media?.name.slice(0, 40)}...` : media.name
+                            : media?.title.length > 40 ? `${media?.title.slice(0, 40)}...` : media.title
+                            }
+                        </h3>
                         <div className="poster-rating--year">
-                            <div className="year">{media?.release_date ?  media.release_date.slice(0, 4) : ` ${media.first_air_date.slice(0, 4)}`}</div>
+                            <div className="year">{mediaType == "movie" ?  media.release_date.slice(0, 4) : ` ${media.first_air_date.slice(0, 4)}`}</div>
                             <div className="rating">{media?.vote_average == 0 ? "N/A" : `${media?.vote_average}`.slice(0, 3) + " IMDb"}</div>
                         </div>
     

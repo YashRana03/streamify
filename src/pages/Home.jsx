@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Poster from "../components/Poster"
 import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 
@@ -10,7 +10,9 @@ export default function Home() {
     const [movieData, setMovieData] = useState(data("movie")) // stores movie data
     const [showData, setShowData] = useState(data("show")) // stores show data
     const [genreData, setGenreData] = useState(data("genres")) // stores both movie and tv show genres
+    
     const [searchQuery, setSearchQuery] = useState("")
+    const navigate = useNavigate()
   
 
     // helper function to get data from session storage if it exists
@@ -28,6 +30,9 @@ export default function Home() {
         e.preventDefault()
         setSearchQuery("")
         console.log("data submitted")
+        sessionStorage.setItem("searchQuery", searchQuery)
+        navigate("results")
+
 
     }
     
@@ -107,7 +112,6 @@ export default function Home() {
       <>
         <div className='container'>
             
-
             <div className="movies-container">
                 <div className="search-box">
                     <div className="relative">

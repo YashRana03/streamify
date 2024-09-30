@@ -91,7 +91,6 @@ HOME PAGE
 
 }
 
-
 .movies-container {
 
     position: relative;
@@ -118,6 +117,7 @@ MOVIE POSTER
 .movie-poster {
     position: relative;
     width: 170px;
+    height: 250px;
     cursor: pointer;
     transition: all 0.3s ease-out;
 
@@ -129,6 +129,15 @@ MOVIE POSTER
     object-fit: cover;
     transition: transform 0.5s ;
     border-radius: 8px 8px 0px 0px;
+}
+
+.missing-poster-img {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    top: 40%;
+    left: 35px;
+    color: red;
 }
 
 .hover-grey:hover {

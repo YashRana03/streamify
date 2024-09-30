@@ -6,6 +6,7 @@ import DetailsSection from './components/DetailsSection';
 import RelatedSection from './components/RelatedSection';
 import DetailPageLayout from './components/DetailPageLayout';
 import ReviewsSection from './components/ReviewsSection';
+import Results from './pages/Results';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
+            <Route path="results" element={<Results />} />
             <Route path="movie/:id"  element={<DetailPageLayout />} >
               <Route index element={<DetailsSection />}/>
               <Route path="reviews" element={<ReviewsSection />} />

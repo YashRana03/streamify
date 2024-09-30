@@ -16,7 +16,7 @@ export default function MovieDetails({mediaDetails}) {
         <>
             <div className="movie-page--container">
                 <div className="movie-page--main">
-                    <img src={`http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`} className="movie-page--img"/>
+                    <img src={mediaDetails?.backdrop_path ? `http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`: "/images/black-img.png"} className="movie-page--img"/>
                     <div className="movie-page--title">
                         <h1>{mediaType == "tv" ? mediaDetails.name : mediaDetails.title}</h1>
                         <div className="movie-page--genre">
