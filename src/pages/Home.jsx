@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import Poster from "../components/Poster"
 import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api"
 import { Link, useNavigate } from "react-router-dom"
-
+import SearchBar from "../components/SearchBar"
 
 
 export default function Home() {
@@ -11,31 +11,13 @@ export default function Home() {
     const [showData, setShowData] = useState(data("show")) // stores show data
     const [genreData, setGenreData] = useState(data("genres")) // stores both movie and tv show genres
     
-    const [searchQuery, setSearchQuery] = useState("")
-    const navigate = useNavigate()
-  
-
     // helper function to get data from session storage if it exists
     function data(name) {
         const stringData = sessionStorage.getItem(name)
         if (stringData) return JSON.parse(stringData)
         return null
     }
-
-    function handleChange(e) {
-        setSearchQuery(e.target.value)
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        setSearchQuery("")
-        console.log("data submitted")
-        sessionStorage.setItem("searchQuery", searchQuery)
-        navigate("results")
-
-
-    }
-    
+        
     useEffect(() => {
 
         // Making the various api calls to get the required data and set it in the appropriate state
@@ -113,19 +95,7 @@ export default function Home() {
         <div className='container'>
             
             <div className="movies-container">
-                <div className="search-box">
-                    <div className="relative">
-                        <img src="/images/search-icon.svg" alt="search-icon" className="serach-icon"/>
-                        <form onSubmit={handleSubmit}>
-                            <input 
-                                type="text" 
-                                placeholder="Search here" 
-                                value={searchQuery}
-                                onChange={handleChange}
-                            />
-                        </form>
-                    </div>
-                </div>
+                <SearchBar />
                 <h2 className='section-name'>Trending</h2>
                 {trendingEl}
             </div>
