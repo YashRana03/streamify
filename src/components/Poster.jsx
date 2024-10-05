@@ -32,7 +32,7 @@ export default function Poster({media, genre, scales = true}) {
     if (mediaType == "tv" || mediaType == "movie")  {
         return (
             <div className={`movie-poster ${!scales ? "hover-grey" : null}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                <img  src={media?.poster_path ? `http://image.tmdb.org/t/p/original${media.poster_path}` : "/images/white-img.avif"} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
+                <img  src={media?.poster_path ? `http://image.tmdb.org/t/p/original${media.poster_path}` : "/images/black-img.png"} loading="lazy" alt="Movie image" style={{transform: isShown ? "scale(1.3)" : ""}}/>
                 {!media?.poster_path ? <p className="missing-poster-img">Image Unavailable</p> : null}
                 
                 {/* Conditionally rendering the description section */}

@@ -84,7 +84,7 @@ export async function getMovieDetails(id) {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
     if(!response.ok) {
         throw {
-            message: "Failed to fetch Movie Data",
+            message: "Failed to fetch Movie Details",
             status: response.status,
             statusText: response.statusText
         }
@@ -97,7 +97,7 @@ export async function getShowDetails(id) {
     const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a`)
     if(!response.ok) {
         throw {
-            message: "Failed to fetch Show Data",
+            message: "Failed to fetch Show Details",
             status: response.status,
             statusText: response.statusText
         }
@@ -163,7 +163,7 @@ export async function searchMedia(query) {
 
     if(!response.ok) {
         throw {
-            message: "Failed to fetch Search results",
+            message: "Failed to fetch search results",
             status: response.status,
             statusText: response.statusText
         }

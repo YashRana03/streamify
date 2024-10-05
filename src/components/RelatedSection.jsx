@@ -2,10 +2,8 @@ import { getRelatedMovies, getRelatedShows } from "../api";
 import { useEffect, useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
 import Poster from "./Poster";
-
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-
 import { ClipLoader } from "react-spinners";
 
 
@@ -16,6 +14,7 @@ export default function RelatedSection() {
     const { mediaDetails} = useOutletContext()
     
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState()
 
     const mediaType = sessionStorage.getItem("mediaType")
     console.log(mediaType)
@@ -63,6 +62,7 @@ export default function RelatedSection() {
                     }
                 }
                 catch (err) {
+                    setError(err)
                     console.log(err)
                 }
                 finally {
@@ -91,11 +91,24 @@ export default function RelatedSection() {
         
     })
 
-      
+    
+    if(error) {
+        return (
+            <div className="movie-page--container">
+                <div className="movie-page--error">
+                    <div className="error-content">
+                    <i className="fa-solid fa-circle-exclamation error-icon"></i>
+                    <h3>{error.status}</h3>
+                    <p>{error.message}</p>
+                    </div>
+                </div>
+            </div>
+        )
+    }  
 
     if (loading) return (
         <div className="movie-page--container">
-            <div className="movie-page--loading">
+            <div className="movie-page--related-loading">
                 <ClipLoader
                 className="bb"
                 color={"white"}

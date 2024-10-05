@@ -16,13 +16,40 @@ a {
     color: inherit;
 }
 
-.loading-container {
+/* ----------------------------------------------------------------------------------------------------------------------------
+ERROR, LOADING MESSAGES
+---------------------------------------------------------------------------------------------------------------------------- */
+
+.loading-container, .error-container {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 180px;
+    width: 250px;
+    text-align: center;  
+    /* background-color: peru; */
+}
+
+.error-content p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: -10px;
+}
+
+.error-icon {
+    color: #F54A47;
+    scale: 3;
+}
+
 
 .skeleton-loader {
     width: 100%;
@@ -450,12 +477,13 @@ RELATED SUB-SECTION
     /* background-color: red; */
 }
 
-.movie-page--loading {
+.movie-page--related-loading, .movie-page--error {
     width: 80%;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* padding-top: 50px; */
 }
 
 .movie-page--carousel {

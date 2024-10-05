@@ -4,14 +4,16 @@ import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api
 import { Link } from "react-router-dom"
 import SearchBar from "../components/SearchBar"
 import { ClipLoader} from "react-spinners"
-
+import Error from "../components/Error"
 
 export default function Home() {
     const [trendingMediaData, setTrendingMediaData] = useState(data("trending")) // stores trending movie/shows data
     const [movieData, setMovieData] = useState(data("movie")) // stores movie data
     const [showData, setShowData] = useState(data("show")) // stores show data
     const [genreData, setGenreData] = useState(data("genres")) // stores both movie and tv show genres
+    
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
     
     // helper function to get data from session storage if it exists
     function data(name) {
@@ -41,6 +43,7 @@ export default function Home() {
                 sessionStorage.setItem("show", JSON.stringify(show))
             }
             catch (err) {
+                setError(err)
                 console.log("Following error occured while fetching data: ",  err)
             }
             finally {
@@ -92,6 +95,10 @@ export default function Home() {
             </Link>
         )
     })
+
+    if (error) {
+        return <Error error={error} />
+    }
     
     // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
     if (loading) {

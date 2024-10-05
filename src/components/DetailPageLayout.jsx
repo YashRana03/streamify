@@ -3,6 +3,7 @@ import MediaDetails from "../pages/MediaDetails"
 import { Outlet, useParams, useLocation } from "react-router-dom"
 import { getMovieDetails, getShowDetails, getMovieReviews, getShowReviews } from "../api"
 import { ClipLoader } from "react-spinners"
+import Error from "./Error"
 
 
 export default function DetailPageLayout() {
@@ -11,6 +12,7 @@ export default function DetailPageLayout() {
     const [reviewsData, setReviewsData] = useState()
 
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     const id = useParams().id // getting the id of the movie chosen by the user
     
@@ -48,6 +50,7 @@ export default function DetailPageLayout() {
             } 
             catch (err) {
                 console.log(err)
+                setError(err)
             }
             finally {
                 setLoading(false)
@@ -58,6 +61,10 @@ export default function DetailPageLayout() {
     }, [id])
 
 
+
+if (error) {
+    return <Error error={error}/>
+}
 
 if (loading) {
     return  (
