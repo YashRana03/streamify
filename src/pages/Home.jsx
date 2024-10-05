@@ -131,7 +131,3 @@ export default function Home() {
     )
 }
 
-// 1--> ADD ERROR MESSAGE
-// 2--> ADD LOADING MESSAGE
-// 3--> MAKE RESPONSIVE
-// 4--> IMPROVE PERFORMANCE
