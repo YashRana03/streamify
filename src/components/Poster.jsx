@@ -28,7 +28,6 @@ export default function Poster({media, genre, scales = true}) {
         }
     })
 
-    console.log(media)
     
     if (mediaType == "tv" || mediaType == "movie")  {
         return (

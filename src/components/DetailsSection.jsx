@@ -7,7 +7,7 @@ export default function DetailsSection() {
 
     console.log(mediaType)
     console.log(data)
-    if (!data) return <h1>Loading</h1>
+    if (!data) return null
     return (
         <>
             <div className="movie-page--container">

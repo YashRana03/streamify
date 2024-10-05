@@ -14,7 +14,7 @@ export default function SearchBar() {
         setSearchQuery("")
         console.log("data submitted")
         sessionStorage.setItem("searchQuery", searchQuery)
-        navigate("results")
+        navigate("/results", {refresh:  Math.random })
 
 
     }

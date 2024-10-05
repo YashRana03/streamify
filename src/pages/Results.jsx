@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import { searchMedia } from "../api"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Poster from "../components/Poster"
+import SearchBar from "../components/SearchBar"
 
 
 export default function Results() {
 
     const [results, setResults] = useState()
     const genres = JSON.parse(sessionStorage.getItem("genres"))
+
+    const location  = useLocation() // to trigger a re-render of the results page, 
+    // location is used as dependency in useEffect
 
     const searchQuery = sessionStorage.getItem("searchQuery")
     console.log(searchQuery)
@@ -24,9 +28,8 @@ export default function Results() {
 
         }
         getShowData()
-    }, [searchQuery])
+    }, [searchQuery, location])
 
-    console.log(results)
 
     const resultsEl = results?.map((media, i) => {
 
@@ -44,6 +47,7 @@ export default function Results() {
     return (
         <div className="container">
             <div className="movies-container">
+                <SearchBar />
                 <h2 className='section-name'>Results</h2>
 
                 {resultsEl}

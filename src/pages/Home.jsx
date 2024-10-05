@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import Poster from "../components/Poster"
 import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import SearchBar from "../components/SearchBar"
+import { ClipLoader} from "react-spinners"
 
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
     const [movieData, setMovieData] = useState(data("movie")) // stores movie data
     const [showData, setShowData] = useState(data("show")) // stores show data
     const [genreData, setGenreData] = useState(data("genres")) // stores both movie and tv show genres
+    const [loading, setLoading] = useState(false)
     
     // helper function to get data from session storage if it exists
     function data(name) {
@@ -17,12 +19,13 @@ export default function Home() {
         if (stringData) return JSON.parse(stringData)
         return null
     }
-        
+
     useEffect(() => {
 
         // Making the various api calls to get the required data and set it in the appropriate state
         async function getData() {
             try {
+                setLoading(true)
                 const [trending, genres, movie, show] = await Promise.all([getTrendingData(), getGenreData(),getMovieData(), getShowData()])
                 setTrendingMediaData(trending)
                 setGenreData(genres)
@@ -39,6 +42,9 @@ export default function Home() {
             }
             catch (err) {
                 console.log("Following error occured while fetching data: ",  err)
+            }
+            finally {
+                setLoading(false)
             }
         
         }
@@ -88,7 +94,16 @@ export default function Home() {
     })
     
     // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
-    if (!trendingMediaData || !genreData || !movieData || !showData ) return  <h1>Loading</h1>
+    if (loading) {
+        return  (
+            <div className="loading-container">
+                <ClipLoader
+                color={"white"}
+                size={70}
+                />
+            </div>
+        )
+    }
   
     return (
       <>
@@ -115,3 +130,8 @@ export default function Home() {
       </>
     )
 }
+
+// 1--> ADD ERROR MESSAGE
+// 2--> ADD LOADING MESSAGE
+// 3--> MAKE RESPONSIVE
+// 4--> IMPROVE PERFORMANCE

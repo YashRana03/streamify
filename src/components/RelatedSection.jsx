@@ -6,12 +6,16 @@ import Poster from "./Poster";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import { ClipLoader } from "react-spinners";
+
 
 export default function RelatedSection() {
 
     const [relatedMedia, setRelatedMedia] = useState()
     const genres = JSON.parse(sessionStorage.getItem("genres"))
     const { mediaDetails} = useOutletContext()
+    
+    const [loading, setLoading] = useState(true)
 
     const mediaType = sessionStorage.getItem("mediaType")
     console.log(mediaType)
@@ -48,6 +52,7 @@ export default function RelatedSection() {
                 console.log(stringIds)
                 
                 try {
+                    setLoading(true)
                     if (mediaType == "movie") {
                         const data = await getRelatedMovies(stringIds)
                         setRelatedMedia(data)
@@ -59,6 +64,9 @@ export default function RelatedSection() {
                 }
                 catch (err) {
                     console.log(err)
+                }
+                finally {
+                    setLoading(false)
                 }
             }
         }
@@ -85,7 +93,17 @@ export default function RelatedSection() {
 
       
 
-    if (!moviePosters) return <h1>Loading</h1>
+    if (loading) return (
+        <div className="movie-page--container">
+            <div className="movie-page--loading">
+                <ClipLoader
+                className="bb"
+                color={"white"}
+                size={70}
+                />
+            </div>
+        </div>
+    )
     return (
         <div className="movie-page--container">
             <div className="movie-page--related">

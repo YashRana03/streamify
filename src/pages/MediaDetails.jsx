@@ -1,22 +1,24 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom"
+import { useState } from "react"
 
 export default function MovieDetails({mediaDetails}) {
+    const [isLoading, setIsLoading] = useState(true)
 
 
     const mediaType = sessionStorage.getItem("mediaType")
     const genres = mediaDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
 
     if (!mediaDetails) {
-        return <div className="container"><h1>Loading</h1></div>
+        return null
     }
-    console.log(mediaDetails)
 
     return (
         <>
             <div className="movie-page--container">
                 <div className="movie-page--main">
-                    <img src={mediaDetails?.backdrop_path ? `http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`: "/images/black-img.png"} className="movie-page--img"/>
+                {isLoading && <div className="skeleton-loader"></div>}
+                    <img src={mediaDetails?.backdrop_path ? `http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`: "/images/black-img.png"} onLoad={() => setIsLoading(false)} className="movie-page--img"/>
                     <div className="movie-page--title">
                         <h1>{mediaType == "tv" ? mediaDetails.name : mediaDetails.title}</h1>
                         <div className="movie-page--genre">
