@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar"
 import { ClipLoader} from "react-spinners"
 import Error from "../components/ErrorMessage"
 
+
 export default function Home() {
     const [trendingMediaData, setTrendingMediaData] = useState(data("trending")) // stores trending movie/shows data
     const [movieData, setMovieData] = useState(data("movie")) // stores movie data
@@ -26,7 +27,7 @@ export default function Home() {
     }
 
     function numItems() {
-        if (width <= 350) return(4)
+        if (width <= 400) return(6)
         else if (width <= 700) return(8)
         else if (width <= 1000) return(10)
         else return 14
