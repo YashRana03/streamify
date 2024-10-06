@@ -71,6 +71,7 @@ nav {
     box-sizing: border-box;
 }
 
+
 .container {
     width: 100%;
     height: min-content;
@@ -99,7 +100,6 @@ HOME PAGE
     position: absolute;
     top: -150px;
     right: 50px;
-    /* background-color: red; */
 }
 
 .relative {
@@ -147,6 +147,8 @@ HOME PAGE
     margin: 0 auto;
     margin-top: 200px;
     margin-bottom: 100px;
+    box-sizing: border-box;
+    /* background-color: red; */
 }
 
 
@@ -569,3 +571,7 @@ footer {
 .tmdb-logo {
     width: 70px;
 }
+
+
+
+

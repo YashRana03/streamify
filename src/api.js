@@ -11,7 +11,7 @@ export async function getTrendingData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 16)
+    return data.results.slice(0, 14)
 
 }
 
@@ -63,7 +63,7 @@ export async function getMovieData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 16)
+    return data.results.slice(0, 14)
 }
 
 export async function getShowData() {
@@ -76,7 +76,7 @@ export async function getShowData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 16)
+    return data.results.slice(0, 14)
 }
 
 
