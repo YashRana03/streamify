@@ -1,11 +1,10 @@
 
 body {
     background-color: #020916;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
     font-family: "Inter", sans-serif;
     margin: 0px;
     padding: 0px;
-    /* margin-bottom: 200px; */
     color: white;
     /* font-family: "Roboto", sans-serif; */
 }

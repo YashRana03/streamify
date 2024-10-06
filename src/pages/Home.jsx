@@ -15,6 +15,9 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     
+    const [width] = useState(window.innerWidth)
+    const [numberOfItems] = useState(numItems())
+    
     // helper function to get data from session storage if it exists
     function data(name) {
         const stringData = sessionStorage.getItem(name)
@@ -22,13 +25,22 @@ export default function Home() {
         return null
     }
 
+    function numItems() {
+        if (width <= 350) return(4)
+        else if (width <= 700) return(8)
+        else if (width <= 1000) return(10)
+        else return 14
+    }
+
     useEffect(() => {
+
 
         // Making the various api calls to get the required data and set it in the appropriate state
         async function getData() {
+
             try {
                 setLoading(true)
-                const [trending, genres, movie, show] = await Promise.all([getTrendingData(), getGenreData(),getMovieData(), getShowData()])
+                const [trending, genres, movie, show] = await Promise.all([getTrendingData(numberOfItems), getGenreData(numberOfItems),getMovieData(numberOfItems), getShowData(numberOfItems)])
                 setTrendingMediaData(trending)
                 setGenreData(genres)
                 setMovieData(movie)

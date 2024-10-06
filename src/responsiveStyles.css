@@ -1,12 +1,13 @@
 @media only screen and (max-width: 700px) {
    .movies-container {
-    width: 95%;
+    width: 100%;
     grid-template-columns: repeat(auto-fill, 170px);
+    column-gap: 0px;
     left: 30px;
 
    }
    
-    .movie-poster {
+   .movie-poster {
     width: 120px;
     height: 175px;
    }
@@ -15,5 +16,23 @@
     top: 172px;
     left: -51px;
     scale: 0.70;
+   }
+  }
+
+  @media only screen and (max-width: 700px) {
+   .search-box {
+      right: 100px;
+   }
+  }
+
+  @media only screen and (max-width: 375px) {
+   .search-box {
+      right: 75px;
+   }
+  }
+
+  @media only screen and (max-width: 315px) {
+   .search-box {
+      right: 60px;
    }
   }

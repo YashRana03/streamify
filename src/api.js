@@ -1,7 +1,7 @@
 
 // This file contains all the functions used make the various api calls in order to obtain the data
 
-export async function getTrendingData() {
+export async function getTrendingData(numberOfItems) {
     const response = await fetch('https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
@@ -11,7 +11,7 @@ export async function getTrendingData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 14)
+    return data.results.slice(0, numberOfItems)
 
 }
 
@@ -53,7 +53,7 @@ export async function getGenreData() {
     return {genresMovie: dictMovies, genresShows: dictShows}
 }
 
-export async function getMovieData() {
+export async function getMovieData(numberOfItems) {
     const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=5&sort_by=popularity.descc&with_origin_country=US%7CGB&primary_release_date.lte=2023-12-12&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
@@ -63,10 +63,10 @@ export async function getMovieData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 14)
+    return data.results.slice(0, numberOfItems)
 }
 
-export async function getShowData() {
+export async function getShowData(numberOfItems) {
     const response = await fetch('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_origin_country=US%7CGB&vote_average.gte=8&api_key=7af7f0da356b6bf29e4f80a35298d70a')
     if (!response.ok) {
         throw {
@@ -76,7 +76,7 @@ export async function getShowData() {
         }
     }
     const data = await response.json()
-    return data.results.slice(0, 14)
+    return data.results.slice(0, numberOfItems)
 }
 
 
