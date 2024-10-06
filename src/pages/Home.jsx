@@ -4,7 +4,7 @@ import { getTrendingData, getGenreData, getMovieData, getShowData } from "../api
 import { Link } from "react-router-dom"
 import SearchBar from "../components/SearchBar"
 import { ClipLoader} from "react-spinners"
-import Error from "../components/Error"
+import Error from "../components/ErrorMessage"
 
 export default function Home() {
     const [trendingMediaData, setTrendingMediaData] = useState(data("trending")) // stores trending movie/shows data
@@ -137,4 +137,3 @@ export default function Home() {
       </>
     )
 }
-

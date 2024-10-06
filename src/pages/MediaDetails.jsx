@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function MovieDetails({mediaDetails}) {
     const [isLoading, setIsLoading] = useState(true)
@@ -8,6 +8,10 @@ export default function MovieDetails({mediaDetails}) {
 
     const mediaType = sessionStorage.getItem("mediaType")
     const genres = mediaDetails?.genres.map((genre, i) => <p key={i}>{genre?.name}</p>)
+
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+      }, []);
 
     if (!mediaDetails) {
         return null

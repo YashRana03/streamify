@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import MediaDetails from "../pages/MediaDetails"
+import MediaDetails from "../../pages/MediaDetails"
 import { Outlet, useParams, useLocation } from "react-router-dom"
-import { getMovieDetails, getShowDetails, getMovieReviews, getShowReviews } from "../api"
+import { getMovieDetails, getShowDetails, getMovieReviews, getShowReviews } from "../../api"
 import { ClipLoader } from "react-spinners"
-import Error from "./Error"
+import Error from "../ErrorMessage"
 
 
 export default function DetailPageLayout() {

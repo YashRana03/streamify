@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import Poster from "../components/Poster"
 import SearchBar from "../components/SearchBar"
 import { ClipLoader } from "react-spinners"
+import Error from "../components/ErrorMessage"
 
 
 export default function Results() {
@@ -12,6 +13,7 @@ export default function Results() {
     const genres = JSON.parse(sessionStorage.getItem("genres"))
 
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     const location  = useLocation() // to trigger a re-render of the results page, 
     // location is used as dependency in useEffect
@@ -27,6 +29,7 @@ export default function Results() {
                 setResults(data)
             }
             catch (err) {
+                setError(err)
                 console.log(err)
             }
             finally {
@@ -51,6 +54,10 @@ export default function Results() {
           )
       })
 
+    if (error) {
+        return <Error error={error} />
+    }
+    
     if (loading) {
         return  (
             <div className="loading-container">

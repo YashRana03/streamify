@@ -1,7 +1,7 @@
-import { getRelatedMovies, getRelatedShows } from "../api";
+import { getRelatedMovies, getRelatedShows } from "../../api";
 import { useEffect, useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
-import Poster from "./Poster";
+import Poster from "../Poster";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ClipLoader } from "react-spinners";
