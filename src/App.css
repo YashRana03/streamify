@@ -5,7 +5,7 @@ body {
     font-family: "Inter", sans-serif;
     margin: 0px;
     padding: 0px;
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
     color: white;
     /* font-family: "Roboto", sans-serif; */
 }
@@ -506,4 +506,66 @@ RELATED SUB-SECTION
 .react-multiple-carousel__arrow--left {
     left: 20px !important;
     
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------
+FOOTER
+---------------------------------------------------------------------------------------------------------------------------- */
+
+footer {
+    background-color: black;
+    /* height: 100px; */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 25px;
+}
+
+.social-links-container {
+    width: 190px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.social-links {
+    font-size: 22px;
+    color: white;
+}
+
+.circle {
+    background-color: black;
+    padding: 8px 9px;
+    border-radius: 50%;
+}
+
+.circle:hover {
+    background-color: white;
+}
+
+.circle:hover .social-links {
+    color: black;
+}
+
+.credits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.credits > p {
+    font-size: 10px;
+    color: grey;
+}
+
+.tmdb-logo {
+    width: 70px;
 }
