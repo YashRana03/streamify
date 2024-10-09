@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+
+// error component to display error status and message
 export default function Error({error}) {
-    console.log("FROM ME", error)
     return (
         <div className="error-container">
             <div className="error-content">

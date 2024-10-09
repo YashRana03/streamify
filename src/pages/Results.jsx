@@ -9,8 +9,8 @@ import Error from "../components/ErrorMessage"
 
 export default function Results() {
 
-    const [results, setResults] = useState()
-    const genres = JSON.parse(sessionStorage.getItem("genres"))
+    const [results, setResults] = useState() // to store search data
+    const genres = JSON.parse(sessionStorage.getItem("genres")) // getting genre data from storage
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -18,10 +18,11 @@ export default function Results() {
     const location  = useLocation() // to trigger a re-render of the results page, 
     // location is used as dependency in useEffect
 
+    // getting the search string
     const searchQuery = sessionStorage.getItem("searchQuery")
-    console.log(searchQuery)
 
     useEffect(() => {
+        // getting data 
         async function getShowData() {
             try {
                 setLoading(true)
@@ -30,7 +31,6 @@ export default function Results() {
             }
             catch (err) {
                 setError(err)
-                console.log(err)
             }
             finally {
                 setLoading(false)
@@ -38,9 +38,12 @@ export default function Results() {
 
         }
         getShowData()
+        
+        // When these dependencies change send api request for data again
     }, [searchQuery, location])
 
 
+    // creating the posters for the movies from the results data
     const resultsEl = results?.map((media, i) => {
 
         if (media?.media_type != "tv" & media?.media_type != "movie") return null
@@ -54,10 +57,12 @@ export default function Results() {
           )
       })
 
+    // display error if data could not be retrieved
     if (error) {
         return <Error error={error} />
     }
     
+    // Dispay loading spinner while data is loading
     if (loading) {
         return  (
             <div className="loading-container">
@@ -68,6 +73,7 @@ export default function Results() {
             </div>
         )
     }
+    // JSX for results page
     return (
         <div className="container">
             <div className="movies-container">

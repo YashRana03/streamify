@@ -16,6 +16,7 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     
+    // To change the number of posters being displayed based on the user's viewport width
     const [width] = useState(window.innerWidth)
     const [numberOfItems] = useState(numItems())
     
@@ -26,6 +27,7 @@ export default function Home() {
         return null
     }
 
+    // helper function to set number of poster to display
     function numItems() {
         if (width <= 400) return(6)
         else if (width <= 700) return(8)
@@ -46,8 +48,6 @@ export default function Home() {
                 setGenreData(genres)
                 setMovieData(movie)
                 setShowData(show)
-
-                console.log("API CALLS WERE MADE")
                 
                 // Storing the data in session Storage so as to limit API calls to be made only when the page is first loaded and not again
                 sessionStorage.setItem("trending", JSON.stringify(trending))
@@ -57,7 +57,6 @@ export default function Home() {
             }
             catch (err) {
                 setError(err)
-                console.log("Following error occured while fetching data: ",  err)
             }
             finally {
                 setLoading(false)
@@ -65,7 +64,7 @@ export default function Home() {
         
         }
         // checking whether the data has been already been obtained (from session storage) or if not make API calls
-        if (!movieData || !showData || !genreData || !trendingMediaData)  {
+        if (!movieData)  {
             getData()
         }
 
@@ -109,11 +108,12 @@ export default function Home() {
         )
     })
 
+    // In case data could not be retrieved successfully, display error message
     if (error) {
         return <Error error={error} />
     }
     
-    // Making sure all the data necessary is received before returning the JSX for displaying the movie posters
+    // display the loading spinner while the data is loading
     if (loading) {
         return  (
             <div className="loading-container">
@@ -125,6 +125,7 @@ export default function Home() {
         )
     }
   
+    // JSX for home page
     return (
       <>
         <div className='container'>

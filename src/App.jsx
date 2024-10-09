@@ -12,8 +12,6 @@ import ErrorMessage from "./components/ErrorMessage.jsx"
 
 function App() {
 
-
-
   return (
     <>
       <BrowserRouter>
