@@ -52,9 +52,8 @@ export default function RelatedSection() {
             
             if (mediaDetails) {
                 let stringIds = ""
-                let x = 0
                 for (let i=0; i<mediaDetails?.genres.length; i++) {
-                    if (x <=2) stringIds += `${mediaDetails.genres[i].id},`
+                    if (i <=1) stringIds += `${mediaDetails.genres[i].id},`
                 }
                 console.log(stringIds)
                 
@@ -129,15 +128,17 @@ export default function RelatedSection() {
         <div className="movie-page--container">
             <div className="movie-page--related">
                 <div className="movie-page--carousel">
-                <Carousel 
-                    responsive={responsive} 
-                    containerClass="carousel-container" 
-                    infinite={true}
-                    slidesToSlide={3}
-                    transitionDuration={1000}
-                >
-                    {moviePosters}
-                </Carousel>
+                {relatedMedia?.length <= 1? "No related media" : 
+                    <Carousel 
+                        responsive={responsive} 
+                        containerClass="carousel-container" 
+                        infinite={true}
+                        slidesToSlide={3}
+                        transitionDuration={1000}
+                    >
+                        {moviePosters}
+                    </Carousel>
+}                  
                 </div>
             </div>
 

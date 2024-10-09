@@ -8,7 +8,7 @@ import RelatedSection from './components/mediaDetails/RelatedSection';
 import DetailPageLayout from './components/mediaDetails/DetailPageLayout';
 import ReviewsSection from './components/mediaDetails/ReviewsSection';
 import Results from './pages/Results';
-
+import ErrorMessage from "./components/ErrorMessage.jsx"
 
 function App() {
 
@@ -27,6 +27,7 @@ function App() {
               <Route path="related" element={<RelatedSection />}/>
             </Route>
           </Route>
+          <Route path="*" element={<ErrorMessage error={{status: 404, message: "Resource not found" }}/>} />          
         </Routes>
       </BrowserRouter>
 
