@@ -1,3 +1,7 @@
+/* ----------------------------------------------------------------------------------------------------------------------------
+MOVIES CONTAINER, POSTERS, SEARCH BAR
+---------------------------------------------------------------------------------------------------------------------------- */
+
 @media only screen and (max-width: 700px) {
    .movies-container {
     width: 100%;
@@ -28,15 +32,158 @@
       right: 75px;
    }
   }
-
+ 
+  
   @media only screen and (max-width: 350px) {
    .search-box {
-      right: 50px;
+      right: 40px;
+   }
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------------------------
+DETAILS PAGE
+---------------------------------------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 1200px) {
+   .movie-page--title {
+      font-size: 20px;
+   }
+  }
+
+  @media only screen and (max-width: 1000px) {
+   .movie-page--title {
+      font-size: 15px;
+      bottom: 20%;
+
+   }
+   .movie-page--genre {
+      font-size: 11px;
+   }
+   .movie-page--runtime {
+      font-size: 13px;
+   }
+   .movie-page--play-button {
+      width: 80px;
+      height: 35px;
+      font-size: 12px;
+   }
+
+  }
+ 
+@media only screen and (max-width: 750px) {
+   .movie-page--title {
+      font-size: 12px;
+      bottom: 10%;
+   }
+  }
+
+  
+@media only screen and (max-width: 650px) {
+   .movie-page--genre {
+      font-size: 9px;
+   }
+
+   .movie-page--genre > p {
+      margin: 5px;
+   }
+
+   .movie-page--play-button {
+      width: 60px;
+      height: 30px;
+      font-size: 10px;
+   }
+  }
+
+  @media only screen and (max-width: 550px) {
+
+
+   .movie-page--title {
+      font-size: 9px;
+      bottom: 0%;
+   }
+   .movie-page--genre {
+      font-size: 9px;
+   }
+
+   .movie-page--genre > p {
+      margin: 3px;
+   }
+
+   .movie-page--runtime {
+      margin-top: 5px;
+      font-size: 10px;
+      /* background-color: red; */
+      position: relative;
+      left: -7px;   
+   }
+   .movie-page--play-button {
+      margin-top: 15px;
+      width: 60px;
+      height: 30px;
+      font-size: 10px;
+   }
+
+   .movie-page--nav {
+      font-size: 13px;
+      margin-top: 30px;
+      width: 200px;
+   }
+
+   .movie-page--info {
+      font-size: 15px;
+   }
+   .movie-page--overview {
+      line-height: 20px;
+   }
+   .movie-page--grey {
+      font-size: 15px;
+   }
+   .movie-page--reviews {
+      font-size: 15px;
+      line-height: 20px;
+   }
+   .movie-page--profile-img {
+      width: 30px;
    }
   }
 
   @media only screen and (max-width: 350px) {
-   .search-box {
-      right: 40px;
+
+   .movie-page--title {
+      font-size: 7px;
+      bottom: 0%;
+   }
+
+   .movie-page--runtime {
+      margin-top: 5px;
+      font-size: 10px;
+      /* background-color: red; */
+      position: relative;
+      left: -7px;   
+   }
+   .movie-page--genre {
+      font-size: 7.5px;
+      line-height: 6px;
+   }
+
+   .movie-page--play-button {
+      width: 60px;
+      height: 24px;
+      font-size: 10px;
+   }
+
+   .movie-page--info {
+      font-size: 13px;
+   }
+
+   .movie-page--overview {
+      line-height: 18px;
+   }
+   .movie-page--reviews {
+      font-size: 13px;
+      line-height: 18px;
+   }
+   .movie-page--profile-img {
+      width: 25px;
    }
   }

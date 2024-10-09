@@ -20,22 +20,30 @@ export default function RelatedSection() {
     console.log(mediaType)
 
 
-
     const responsive = {
-        desktop: {
+        size1: {
           breakpoint: { max: 3000, min: 1024 },
           items: 7
         },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 7
+        size2: {
+          breakpoint: { max: 1600, min: 464 },
+          items: 5
         },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 7
-        }
+        size3: {
+          breakpoint: { max: 1100, min: 0 },
+          items: 4
+        },
+        size4: {
+          breakpoint: { max: 650, min: 0 },
+          items: 3,
+          slidesToSlide: 3,
+        },
+        size5: {
+            breakpoint: { max: 475, min: 0 },
+            items: 2,
+            slidesToSlide: 2,
+          },
       };
-
 
 
     useEffect(() => {

@@ -13,7 +13,7 @@ export default function Review({data}) {
     return  (
         
         <div className="movie-page--review">
-            <img  src="/images/account-pic.svg" alt="user-profile-picture" width="100px" className="movie-page--profile-img"/>
+            <img  src="/images/account-pic.svg" alt="user-profile-picture" className="movie-page--profile-img"/>
             <div className="movie-page--createdAt">{`On: ${data?.created_at.slice(0, 10)}`}</div>
             <h5 className="movie-page--author">{data?.author}</h5>
             <p>{show ? data?.content : `${data?.content.slice(0, 300)}...`}</p>
