@@ -1,13 +1,14 @@
 import { useOutletContext } from "react-router-dom"
 
 export default function DetailsSection() {
-    const {mediaDetails: data} = useOutletContext()
 
-    const mediaType = sessionStorage.getItem("mediaType")
+    const {mediaDetails: data} = useOutletContext() // receiving media details through outlet context
 
-    console.log(mediaType)
-    console.log(data)
+    const mediaType = sessionStorage.getItem("mediaType") // accessing media type
+
     if (!data) return null
+
+    // JSX for displaying overview, country, rating, year, company by accessing the appropriate propeties based on the media type
     return (
         <>
             <div className="movie-page--container">

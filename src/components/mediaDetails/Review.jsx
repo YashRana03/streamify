@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 
+// Review component
 export default function Review({data}) {
 
-    const [length] = useState(data.content.length)
-    const [show, setShow] = useState()    
+    const [length] = useState(data.content.length) // review text length
+    const [show, setShow] = useState()  // flag to show clipped text
 
+    // toggles the show flag
     function toggleShow() {
         setShow(() => !show)
     }
 
+    // JSX for displaying review text, author name, data posted, and a show btn to show the entire text if it was clipped
     return  (
         
         <div className="movie-page--review">

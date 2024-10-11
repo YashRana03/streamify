@@ -1,3 +1,5 @@
+//Footer component
+
 export default function Footer() {
     return (
         <>
@@ -5,7 +7,6 @@ export default function Footer() {
                 <div className="social-links-container">
                     <div className="circle">
                         <a href="https://github.com/YashRana03" target="_new"><i className="fa-brands fa-github social-links"></i></a>
-                        
                     </div>
                     <div className="circle">
                         <a href="https://linkedin.com/in/yash-rana-kumar-988a86252" target="_new"><i className="fa-brands fa-linkedin-in social-links"></i></a>

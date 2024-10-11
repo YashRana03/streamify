@@ -6,20 +6,19 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ClipLoader } from "react-spinners";
 
-
+// This component is used to craete Related section on the media details page
 export default function RelatedSection() {
 
-    const [relatedMedia, setRelatedMedia] = useState()
-    const genres = JSON.parse(sessionStorage.getItem("genres"))
-    const { mediaDetails} = useOutletContext()
+    const [relatedMedia, setRelatedMedia] = useState() // related data 
+    const genres = JSON.parse(sessionStorage.getItem("genres")) // genres for decoding the genre codes into words
+    const { mediaDetails} = useOutletContext() // getting media details by outletContext
     
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
 
-    const mediaType = sessionStorage.getItem("mediaType")
-    console.log(mediaType)
+    const mediaType = sessionStorage.getItem("mediaType") // media type from session storage
 
-
+    // Responsive rules for the carousel
     const responsive = {
         size1: {
           breakpoint: { max: 3000, min: 1024 },
@@ -46,17 +45,19 @@ export default function RelatedSection() {
       };
 
 
+    // Loading related media data
     useEffect(() => {
 
         async function getData() {
             
+            // here the first couple of genre tags are extracted from the media details and concatenated into a string with commas
             if (mediaDetails) {
                 let stringIds = ""
                 for (let i=0; i<mediaDetails?.genres.length; i++) {
                     if (i <=1) stringIds += `${mediaDetails.genres[i].id},`
                 }
-                console.log(stringIds)
                 
+                // Related media is found by searching for media with similar genre tags
                 try {
                     setLoading(true)
                     if (mediaType == "movie") {
@@ -79,11 +80,9 @@ export default function RelatedSection() {
         }
         getData()
 
-    }, [mediaDetails])
+    }, [mediaDetails]) // Data is reloaded every time the media details change
 
-
-    console.log(relatedMedia)
-
+    // Generating the posters of the related media
     const moviePosters = relatedMedia?.map((movie, i) => {
         if (movie?.id == mediaDetails?.id) return null
         return (
@@ -98,7 +97,8 @@ export default function RelatedSection() {
         
     })
 
-    
+
+    // Error message
     if(error) {
         return (
             <div className="movie-page--container">
@@ -113,6 +113,7 @@ export default function RelatedSection() {
         )
     }  
 
+    // Loading spinner
     if (loading) return (
         <div className="movie-page--container">
             <div className="movie-page--related-loading">
@@ -124,6 +125,8 @@ export default function RelatedSection() {
             </div>
         </div>
     )
+
+    // JSX for carousel containing the related media3
     return (
         <div className="movie-page--container">
             <div className="movie-page--related">

@@ -8,8 +8,8 @@ import Error from "../ErrorMessage"
 
 export default function DetailPageLayout() {
 
-    const [mediaDetails, setMediaDetails] = useState()
-    const [reviewsData, setReviewsData] = useState()
+    const [mediaDetails, setMediaDetails] = useState() // movie details data
+    const [reviewsData, setReviewsData] = useState() // review data
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -17,18 +17,18 @@ export default function DetailPageLayout() {
     const id = useParams().id // getting the id of the movie chosen by the user
     
     const location = useLocation()
-    let mediaType = location.state?.data
+    let mediaType = location.state?.data // getting the media type
 
-    console.log(mediaType)
+    // Add the mediaType received to the session storage
     if (mediaType)  {
         sessionStorage.setItem("mediaType", (mediaType))
     }
+    // if no mediatype was received due to redirection, access the mediaType in session storage
     else {
         mediaType = sessionStorage.getItem("mediaType")
-        console.log(mediaType)
     }
     
-    
+    // Loading data 
     useEffect(() => {
         async function getData() {
             try {
@@ -58,14 +58,15 @@ export default function DetailPageLayout() {
             
         }
         getData()
-    }, [id])
+    }, [id]) // if id changes request new data
 
 
-
+// Error message in case error occurs 
 if (error) {
     return <Error error={error}/>
 }
 
+// Loading spinner while waiting for data
 if (loading) {
     return  (
         <div className="loading-container">
@@ -77,6 +78,7 @@ if (loading) {
     ) 
 }
 
+// passing data to MediaDetails component by props, while to the outlet by outletContext
 return (
         <>
             <MediaDetails mediaDetails={mediaDetails}/>
