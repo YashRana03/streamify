@@ -73,7 +73,7 @@ export default function Home() {
     // // Looping over data and creating trending movie and show poster elements
     const trendingEl = trendingMediaData?.map((media, i) => {
       return ( 
-            <Link key={i} to={`movie/${media.id}`} state={{data: media?.media_type}}>
+            <Link key={i} to={`details/${media.id}/${media?.media_type}`} state={{data: media?.media_type}}>
                 <Poster 
                 media={media}
                 genre={genreData}
@@ -86,7 +86,7 @@ export default function Home() {
     // Looping over data and creating movie poster elements
     const movieEl = movieData?.map((media, i) => {
         return ( 
-            <Link key={i} to={`movie/${media.id}/`} state={{data: "movie"}}>
+            <Link key={i} to={`details/${media.id}/movie`} state={{data: "movie"}}>
                 <Poster 
                 media={media}
                 genre={genreData}
@@ -99,7 +99,7 @@ export default function Home() {
     // Looping over data and creating show poster elements
     const showEl = showData?.map((media, i) => {
       return ( 
-            <Link key={i} to={`movie/${media.id}`} state={{data: "tv"}}>
+            <Link key={i} to={`details/${media.id}/tv`} state={{data: "tv"}}>
                 <Poster 
                 media={media}
                 genre={genreData}

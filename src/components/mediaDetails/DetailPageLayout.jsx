@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import MediaDetails from "../../pages/MediaDetails"
-import { Outlet, useParams, useLocation } from "react-router-dom"
+import { Outlet, useParams } from "react-router-dom"
 import { getMovieDetails, getShowDetails, getMovieReviews, getShowReviews } from "../../api"
 import { ClipLoader } from "react-spinners"
 import Error from "../ErrorMessage"
@@ -15,9 +15,9 @@ export default function DetailPageLayout() {
     const [error, setError] = useState(false)
 
     const id = useParams().id // getting the id of the movie chosen by the user
+    let mediaType = useParams().type // getting the media type
     
-    const location = useLocation()
-    let mediaType = location.state?.data // getting the media type
+    console.log(id, mediaType)
 
     // Add the mediaType received to the session storage
     if (mediaType)  {

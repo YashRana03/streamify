@@ -86,7 +86,7 @@ export default function RelatedSection() {
     const moviePosters = relatedMedia?.map((movie, i) => {
         if (movie?.id == mediaDetails?.id) return null
         return (
-            <Link key={i} to={`/movie/${movie.id}`}>
+            <Link key={i} to={`/details/${movie.id}/${mediaType}`}>
                 <Poster 
                 media={movie}
                 genre={genres}

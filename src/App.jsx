@@ -18,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
-            <Route path="results" element={<Results />} />
-            <Route path="movie/:id"  element={<DetailPageLayout />} >
+            <Route path="results/:search" element={<Results />} />
+            <Route path="details/:id/:type"  element={<DetailPageLayout />} >
               <Route index element={<DetailsSection />}/>
               <Route path="reviews" element={<ReviewsSection />} />
               <Route path="related" element={<RelatedSection />}/>

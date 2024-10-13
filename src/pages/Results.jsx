@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { searchMedia } from "../api"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import Poster from "../components/Poster"
 import SearchBar from "../components/SearchBar"
 import { ClipLoader } from "react-spinners"
@@ -19,7 +19,7 @@ export default function Results() {
     // location is used as dependency in useEffect
 
     // getting the search string
-    const searchQuery = sessionStorage.getItem("searchQuery")
+    const searchQuery = useParams().search
 
     useEffect(() => {
         // getting data 
@@ -48,7 +48,7 @@ export default function Results() {
 
         if (media?.media_type != "tv" & media?.media_type != "movie") return null
         return ( 
-              <Link key={i} to={`../movie/${media.id}`} state={{data: media?.media_type}}>
+              <Link key={i} to={`../details/${media.id}/${media?.media_type}`} state={{data: media?.media_type}}>
                   <Poster 
                   media={media}
                   genre={genres}
