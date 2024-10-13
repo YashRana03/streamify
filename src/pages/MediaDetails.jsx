@@ -25,7 +25,7 @@ export default function MovieDetails({mediaDetails}) {
                 <div className="movie-page--main">
                 {isLoading && <div className="skeleton-loader"></div>}
                     {/* img element which conditionally renders the actual movie background img or a black background */}
-                    <img src={mediaDetails?.backdrop_path ? `http://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`: "/images/black-img.png"} onLoad={() => setIsLoading(false)} className="movie-page--img"/>
+                    <img src={mediaDetails?.backdrop_path ? `https://image.tmdb.org/t/p/original${mediaDetails.backdrop_path}`: "/images/black-img.png"} onLoad={() => setIsLoading(false)} className="movie-page--img"/>
                     <div className="movie-page--title">
                         
                         {/* Accessing the appropriate propeties (depending on media type) to display title, genre and runtime */}
